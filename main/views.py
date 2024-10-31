@@ -1,10 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 
+@login_required(login_url="")
+def portal(request):
+    return render(request, 'main/portal/index.html')
+
+
 def index(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('account:user_account'))
-    else:
-        return render(request, 'index.html')
+    return render(request, 'index.html')

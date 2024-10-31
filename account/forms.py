@@ -41,7 +41,7 @@ class UserRegisterForm(UserCreationForm):
         'password_mismatch': "Введенные пароли не совпадают",
     }
 
-    field_order = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+    field_order = ['username', 'first_name', 'last_name', "surname", "phone", 'email', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super(UserRegisterForm, self).__init__(*args, **kwargs)
@@ -59,4 +59,6 @@ class UserRegisterForm(UserCreationForm):
         """
         self.fields['password2'].help_text = 'Для подтверждения введите, пожалуйста, пароль ещё раз.'
         self.fields['username'].widget.attrs['maxlength'] = 20
+        for field in self.fields:
+            self.fields[field].widget.attrs["class"] = "form-control shadow-sm p-3 rounded-pill"
         # self.fields['username'].widget.attrs['class'] = 'w-100'
